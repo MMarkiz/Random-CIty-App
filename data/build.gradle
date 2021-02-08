@@ -1,22 +1,21 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'kotlin-android-extensions'
 }
 
 android {
-    compileSdkVersion androidVersion.compileSdk
-    buildToolsVersion androidVersion.buildTools
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.netguru.randomcityapp"
-        minSdkVersion androidVersion.minSdk
-        targetSdkVersion androidVersion.tagetSdk
+        minSdkVersion 21
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -25,33 +24,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
-    buildFeatures {
-        dataBinding = true
-    }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
     kotlinOptions {
         jvmTarget = '1.8'
     }
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
+    implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(':domain')
-    implementation project(':data')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "androidx.core:core-ktx:$libVersion.coreKtx"
     implementation "androidx.appcompat:appcompat:$libVersion.appcompat"
-    implementation "com.google.android.material:material:$libVersion.material"
-    implementation "androidx.constraintlayout:constraintlayout:$libVersion.constraintLayout"
-    implementation "androidx.navigation:navigation-fragment-ktx:$libVersion.navigationComponet"
-    implementation "androidx.navigation:navigation-ui-ktx:$libVersion.navigationComponet"
+    implementation "androidx.core:core-ktx:$libVersion.coreKtx"
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$libVersion.coroutines"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$libVersion.coroutines"
