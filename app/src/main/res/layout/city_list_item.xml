@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="model"
+            type="com.netguru.domain.CityModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/medium_space"
+        android:paddingTop="@dimen/medium_space"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/cityNameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:textColor="@{model.color}"
+            android:text="@{model.name}"/>
+
+        <TextView
+            android:id="@+id/cityCreatedTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_space"
+            app:dateTime="@{model.created}"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/medium_space"
+            android:background="@color/black"/>
+    </LinearLayout>
+
+</layout>
