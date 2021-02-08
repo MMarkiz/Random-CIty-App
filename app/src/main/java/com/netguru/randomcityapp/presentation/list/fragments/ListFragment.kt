@@ -1,8 +1,7 @@
-package com.netguru.randomcityapp.presentation.list
+package com.netguru.randomcityapp.presentation.list.fragments
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +12,7 @@ import com.netguru.randomcityapp.R
 import com.netguru.randomcityapp.core.ui.BaseFragment
 import com.netguru.randomcityapp.databinding.FragmentListBinding
 import com.netguru.randomcityapp.presentation.list.adapters.CitiesAdapter
+import com.netguru.randomcityapp.presentation.list.navigators.ListNavigator
 import com.netguru.randomcityapp.presentation.main.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_list.*
 import javax.inject.Inject
@@ -27,6 +27,9 @@ class ListFragment : BaseFragment<FragmentListBinding>() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val mainViewModel: MainViewModel by activityViewModels { viewModelFactory }
+
+    @Inject
+    lateinit var navigator: ListNavigator
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,6 +52,6 @@ class ListFragment : BaseFragment<FragmentListBinding>() {
 
 
     private fun onCityClicked(city: CityModel) {
-        Toast.makeText(context, city.name, Toast.LENGTH_LONG).show()
+        navigator.navigateToDetails(city)
     }
 }

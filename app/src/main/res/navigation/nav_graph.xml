@@ -13,12 +13,13 @@
         <action
             android:id="@+id/action_SplashFragment_to_ListFragment"
             app:destination="@id/ListFragment"
+            app:popUpTo="@id/SplashFragment"
             app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
         android:id="@+id/ListFragment"
-        android:name="com.netguru.randomcityapp.presentation.list.ListFragment"
+        android:name="com.netguru.randomcityapp.presentation.list.fragments.ListFragment"
         tools:layout="@layout/fragment_list">
 
         <action
@@ -33,5 +34,9 @@
         <action
             android:id="@+id/action_DetailsFragment_to_FirstFragment"
             app:destination="@id/ListFragment" />
+
+        <argument
+            android:name="city"
+            app:argType="com.netguru.domain.CityModel" />
     </fragment>
 </navigation>

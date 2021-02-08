@@ -2,6 +2,7 @@ package com.netguru.randomcityapp.core.binding
 
 import android.content.Context
 import android.widget.TextView
+import android.widget.Toolbar
 import androidx.databinding.BindingAdapter
 import com.netguru.randomcityapp.R
 import com.netguru.randomcityapp.core.Constants.COLOR_BLACK
@@ -25,6 +26,17 @@ fun textColor(view: TextView, colorName: String?) {
         view.run {
             getColorResource(context, it)?.let { colorResource ->
                 setTextColor(colorResource)
+            }
+        }
+    }
+}
+
+@BindingAdapter("toolbarColor")
+fun toolbarColor(view: Toolbar, colorName: String?) {
+    colorName?.let {
+        view.run {
+            getColorResource(context, it)?.let { colorResource ->
+                setBackgroundColor(colorResource)
             }
         }
     }
