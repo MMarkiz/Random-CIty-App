@@ -4,21 +4,22 @@
     <data>
 
         <variable
-            name="city"
-            type="com.netguru.domain.CityModel" />
+            name="viewModel"
+            type="com.netguru.randomcityapp.presentation.details.viewmodels.DetailsViewModel" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.details.DetailsFragment">
+        tools:context=".presentation.details.fragments.DetailsFragment">
 
         <Toolbar
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
-            app:toolbarColor="@{city.color}"
-            android:title="@{city.name}" />
+            android:title="@{viewModel.city.name}"
+            android:titleTextColor="@color/gray"
+            app:toolbarColor="@{viewModel.city.color}" />
 
     </LinearLayout>
 </layout>

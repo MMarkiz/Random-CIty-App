@@ -12,4 +12,7 @@ object Constants {
     const val COLOR_BLUE = "Blue"
     const val COLOR_RED = "Red"
     const val COLOR_YELLOW = "Yellow"
+
+    const val DETAILS_CITY_ARGUMENT_KEY = "city"
+    const val CLEAR_SELECTED_CITY_FLAG_KEY = "clear_selected_city_flag"
 }

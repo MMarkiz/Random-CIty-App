@@ -1,7 +1,7 @@
 package com.netguru.randomcityapp.presentation.main.di
 
 import com.netguru.randomcityapp.core.di.FragmentScope
-import com.netguru.randomcityapp.presentation.details.DetailsFragment
+import com.netguru.randomcityapp.presentation.details.fragments.DetailsFragment
 import com.netguru.randomcityapp.presentation.details.di.DetailsFragmentModule
 import com.netguru.randomcityapp.presentation.list.fragments.ListFragment
 import com.netguru.randomcityapp.presentation.list.di.ListFragmentModule

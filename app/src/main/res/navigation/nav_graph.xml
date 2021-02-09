@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/DetailsFragment"
-        android:name="com.netguru.randomcityapp.presentation.details.DetailsFragment"
+        android:name="com.netguru.randomcityapp.presentation.details.fragments.DetailsFragment"
         tools:layout="@layout/fragment_details">
 
         <action
