@@ -1,5 +1,7 @@
 package com.netguru.randomcityapp.presentation.details.navigators
 
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 import com.netguru.domain.CityModel
 import com.netguru.randomcityapp.R
 import com.netguru.randomcityapp.core.Constants.CLEAR_SELECTED_CITY_FLAG_KEY
@@ -10,6 +12,7 @@ import javax.inject.Inject
 interface DetailsNavigator {
     fun navigateBackToList(city: CityModel)
     fun setClearDetailsFlag()
+    fun registerMapReadyCallback(callback: OnMapReadyCallback)
 }
 
 class DetailsNavigatorImpl @Inject constructor(fragment: DetailsFragment) :
@@ -22,5 +25,13 @@ class DetailsNavigatorImpl @Inject constructor(fragment: DetailsFragment) :
 
     override fun setClearDetailsFlag() {
         navController?.previousBackStackEntry?.savedStateHandle?.set(CLEAR_SELECTED_CITY_FLAG_KEY, true)
+    }
+
+    override fun registerMapReadyCallback(callback: OnMapReadyCallback) {
+        val mapFragment = fragment
+            ?.childFragmentManager
+            ?.findFragmentById(R.id.mapFragment) as? SupportMapFragment
+
+        mapFragment?.getMapAsync(callback)
     }
 }

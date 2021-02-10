@@ -2,6 +2,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/android,androidstudio
 # Edit at https://www.toptal.com/developers/gitignore?templates=android,androidstudio
 
+# API keys
+apikey.properties
+
 ### Android ###
 # Built application files
 *.apk

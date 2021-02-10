@@ -5,14 +5,20 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
 import com.netguru.randomcityapp.R
 import com.netguru.randomcityapp.core.ui.BaseFragment
 import com.netguru.randomcityapp.databinding.FragmentDetailsBinding
+import com.netguru.randomcityapp.presentation.details.map.DetailsMapManager
 import com.netguru.randomcityapp.presentation.details.navigators.DetailsNavigator
 import com.netguru.randomcityapp.presentation.details.viewmodels.DetailsViewModel
+import java.io.IOException
+import java.net.UnknownHostException
 import javax.inject.Inject
 
-class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
+
+class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), OnMapReadyCallback {
 
     override val layoutId: Int
         get() = R.layout.fragment_details
@@ -24,6 +30,9 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
     @Inject
     lateinit var navigator: DetailsNavigator
 
+    @Inject
+    lateinit var mapManager: DetailsMapManager
+
     private val args by navArgs<DetailsFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,6 +42,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
 
         navigator.setClearDetailsFlag()
         handleOrientationChange()
+        navigator.registerMapReadyCallback(this)
     }
 
     private fun handleOrientationChange() {
@@ -43,6 +53,24 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
                 }
             }
             viewModel.wasLastTimeTabletLandscape = isTabletLandscape
+        }
+    }
+
+    override fun onMapReady(map: GoogleMap?) {
+        mapManager.setupGoogleMap(map)
+        if (isNetworkConnected()) {
+            viewModel.city.value?.name?.let {
+                mapManager.findCityOnMapByName(it, ::handleException)
+            }
+        } else {
+            showErrorDialog(R.string.error_network_message)
+        }
+    }
+
+    private fun handleException(exception: IOException) {
+        when (exception) {
+            is UnknownHostException -> showErrorDialog(R.string.error_network_message)
+            else -> showErrorDialog(R.string.error_unexpected_message)
         }
     }
 }

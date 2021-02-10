@@ -3,8 +3,13 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
-    id  'androidx.navigation.safeargs.kotlin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
+
+def apikeyPropertiesFile = rootProject.file("apikey.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
 
 android {
     compileSdkVersion androidVersion.compileSdk
@@ -18,6 +23,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        resValue "string", "google_maps_api_key", apikeyProperties['GOOGLE_MAPS_API_KEY']
     }
 
     buildTypes {
@@ -61,6 +68,8 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:$libVersion.daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$libVersion.daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$libVersion.daggerVersion"
+
+    implementation "com.google.android.gms:play-services-maps:$libVersion.playServicesMap"
 
     testImplementation "junit:junit:$libVersion.junit"
     androidTestImplementation "androidx.test.ext:junit:$libVersion.extJunit"

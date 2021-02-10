@@ -15,4 +15,8 @@ object Constants {
 
     const val DETAILS_CITY_ARGUMENT_KEY = "city"
     const val CLEAR_SELECTED_CITY_FLAG_KEY = "clear_selected_city_flag"
+
+    const val LOCATION_RESULTS_NUMBER = 1
+
+    const val MAP_ZOOM = 14f
 }

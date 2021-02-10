@@ -12,6 +12,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".presentation.details.fragments.DetailsFragment">
 
         <Toolbar
@@ -20,6 +21,12 @@
             android:title="@{viewModel.city.name}"
             android:titleTextColor="@color/gray"
             app:toolbarColor="@{viewModel.city.color}" />
+
+        <fragment
+            android:id="@+id/mapFragment"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 </layout>
