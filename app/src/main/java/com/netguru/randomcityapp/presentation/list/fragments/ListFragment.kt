@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.netguru.domain.CityModel
+import com.netguru.domain.models.CityModel
 import com.netguru.randomcityapp.R
 import com.netguru.randomcityapp.core.ui.BaseFragment
 import com.netguru.randomcityapp.databinding.FragmentListBinding

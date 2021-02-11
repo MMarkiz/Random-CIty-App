@@ -2,8 +2,7 @@ package com.netguru.randomcityapp.presentation.list.navigators
 
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
-import com.netguru.domain.CityModel
+import com.netguru.domain.models.CityModel
 import com.netguru.randomcityapp.R
 import com.netguru.randomcityapp.core.Constants
 import com.netguru.randomcityapp.core.Constants.DETAILS_CITY_ARGUMENT_KEY

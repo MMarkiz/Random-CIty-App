@@ -40,10 +40,10 @@ abstract class BaseFragment<TViewBinding : ViewDataBinding> : DaggerFragment() {
         innerBinding = null
     }
 
-    fun showErrorDialog(@StringRes messageRes: Int) {
+    fun showConnectionErrorDialog() {
         AlertDialog.Builder(context)
             .setTitle(R.string.error_title)
-            .setMessage(messageRes)
+            .setMessage(R.string.error_network_message)
             .setPositiveButton(R.string.error_ok_button) { dialog, _ -> dialog.dismiss() }
             .show()
     }

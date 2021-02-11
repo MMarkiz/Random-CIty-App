@@ -1,4 +1,4 @@
-package com.netguru.domain
+package com.netguru.domain.models
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

@@ -49,6 +49,10 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$libVersion.daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$libVersion.daggerVersion"
 
+    api "androidx.room:room-runtime:$libVersion.room"
+    implementation "androidx.room:room-ktx:$libVersion.room"
+    kapt "androidx.room:room-compiler:$libVersion.room"
+
     testImplementation "junit:junit:$libVersion.junit"
     androidTestImplementation "androidx.test.ext:junit:$libVersion.extJunit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$libVersion.espressoCore"

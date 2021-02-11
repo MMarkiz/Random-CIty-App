@@ -37,6 +37,6 @@
 
         <argument
             android:name="city"
-            app:argType="com.netguru.domain.CityModel" />
+            app:argType="com.netguru.domain.models.CityModel" />
     </fragment>
 </navigation>

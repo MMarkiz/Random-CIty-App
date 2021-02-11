@@ -14,7 +14,6 @@ class MainActivity : DaggerAppCompatActivity() {
 	lateinit var viewModelFactory: ViewModelProvider.Factory
 	private val viewModel: MainViewModel by viewModels { viewModelFactory }
 
-
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
@@ -26,7 +25,7 @@ class MainActivity : DaggerAppCompatActivity() {
 	}
 
 	override fun onPause() {
-		super.onPause()
 		viewModel.stopCityGenerator()
+		super.onPause()
 	}
 }

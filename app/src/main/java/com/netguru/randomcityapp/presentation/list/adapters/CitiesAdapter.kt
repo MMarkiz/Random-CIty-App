@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.netguru.domain.CityModel
+import com.netguru.domain.models.CityModel
 import com.netguru.randomcityapp.databinding.CityListItemBinding
 
 class CitiesAdapter(private val onCityClicked: (CityModel) -> Unit) :

@@ -2,7 +2,7 @@ package com.netguru.randomcityapp.presentation.details.navigators
 
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.netguru.domain.CityModel
+import com.netguru.domain.models.CityModel
 import com.netguru.randomcityapp.R
 import com.netguru.randomcityapp.core.Constants.CLEAR_SELECTED_CITY_FLAG_KEY
 import com.netguru.randomcityapp.core.navigators.BaseFragmentNavigator

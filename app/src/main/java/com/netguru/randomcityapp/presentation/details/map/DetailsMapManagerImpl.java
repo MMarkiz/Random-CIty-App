@@ -19,9 +19,6 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
-import kotlin.Unit;
-import kotlin.jvm.functions.Function1;
-
 public class DetailsMapManagerImpl implements DetailsMapManager {
 
     GoogleMap map;
@@ -39,21 +36,24 @@ public class DetailsMapManagerImpl implements DetailsMapManager {
     }
 
     @Override
-    public void findCityOnMapByName(@NotNull String cityName, @NotNull Function1<? super IOException, Unit> onError) {
-        try {
-            LatLng cityLatLng = getCityLatLngByName(cityName);
-            CameraPosition cameraPosition = new CameraPosition.Builder().target(cityLatLng).zoom(Constants.MAP_ZOOM).build();
-            CameraUpdate camera = CameraUpdateFactory.newCameraPosition(cameraPosition);
+    public void showLocationOnMap(@NotNull LatLng location) {
+        CameraPosition cameraPosition = new CameraPosition.Builder().target(location).zoom(Constants.MAP_ZOOM).build();
+        CameraUpdate camera = CameraUpdateFactory.newCameraPosition(cameraPosition);
+        if(map != null){
             map.animateCamera(camera);
-        } catch (IOException exception) {
-            exception.printStackTrace();
-            onError.invoke(exception);
         }
     }
 
-    private LatLng getCityLatLngByName(String cityName) throws IOException {
-        Address city = geocoder.getFromLocationName(cityName, Constants.LOCATION_RESULTS_NUMBER).get(0);
-        return new LatLng(city.getLatitude(), city.getLongitude());
+    @Nullable
+    @Override
+    public LatLng getCityLatLngByName(@NotNull String cityName) {
+        try {
+            Address city = geocoder.getFromLocationName(cityName, Constants.LOCATION_RESULTS_NUMBER).get(0);
+            return new LatLng(city.getLatitude(), city.getLongitude());
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+        return null;
     }
 }
 

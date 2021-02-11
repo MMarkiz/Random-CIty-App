@@ -4,7 +4,7 @@
     <data>
         <variable
             name="model"
-            type="com.netguru.domain.CityModel" />
+            type="com.netguru.domain.models.CityModel" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -2,7 +2,6 @@
     <string name="app_name">RandomCityApp</string>
     <string name="splash_loading">Loading …</string>
     <string name="error_title">Error</string>
-    <string name="error_unexpected_message">Unexpected Error</string>
     <string name="error_network_message">No network connection</string>
     <string name="error_ok_button">Ok</string>
 </resources>

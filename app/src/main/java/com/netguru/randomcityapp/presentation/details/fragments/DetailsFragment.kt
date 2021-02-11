@@ -3,6 +3,7 @@ package com.netguru.randomcityapp.presentation.details.fragments
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.google.android.gms.maps.GoogleMap
@@ -13,8 +14,8 @@ import com.netguru.randomcityapp.databinding.FragmentDetailsBinding
 import com.netguru.randomcityapp.presentation.details.map.DetailsMapManager
 import com.netguru.randomcityapp.presentation.details.navigators.DetailsNavigator
 import com.netguru.randomcityapp.presentation.details.viewmodels.DetailsViewModel
-import java.io.IOException
-import java.net.UnknownHostException
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -43,6 +44,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), OnMapReadyCallba
         navigator.setClearDetailsFlag()
         handleOrientationChange()
         navigator.registerMapReadyCallback(this)
+        setupObservers()
     }
 
     private fun handleOrientationChange() {
@@ -56,21 +58,28 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), OnMapReadyCallba
         }
     }
 
+    private fun setupObservers() {
+        viewModel.cityLatLng.observe(viewLifecycleOwner, Observer {
+            it?.let { mapManager.showLocationOnMap(it) }
+        })
+    }
+
     override fun onMapReady(map: GoogleMap?) {
         mapManager.setupGoogleMap(map)
-        if (isNetworkConnected()) {
-            viewModel.city.value?.name?.let {
-                mapManager.findCityOnMapByName(it, ::handleException)
-            }
-        } else {
-            showErrorDialog(R.string.error_network_message)
+        if(viewModel.cityLatLng.value == null){
+            getCityLatLng()
         }
     }
 
-    private fun handleException(exception: IOException) {
-        when (exception) {
-            is UnknownHostException -> showErrorDialog(R.string.error_network_message)
-            else -> showErrorDialog(R.string.error_unexpected_message)
+    private fun getCityLatLng() {
+        if (isNetworkConnected()) {
+            GlobalScope.launch {
+                viewModel.city.value?.name?.let {
+                    viewModel.postCityLatLng(mapManager.getCityLatLngByName(it))
+                }
+            }
+        } else {
+            showConnectionErrorDialog()
         }
     }
 }
